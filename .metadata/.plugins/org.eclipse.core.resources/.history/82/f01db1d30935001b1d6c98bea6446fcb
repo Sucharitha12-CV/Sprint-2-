@@ -1,0 +1,5 @@
+package com.cg.ohds.entity;
+
+public class Address {
+
+}

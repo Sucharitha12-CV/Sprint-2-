@@ -1,0 +1,38 @@
+package com.cg.ohds.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.cg.ohds.entity.Cart;
+import com.cg.ohds.repository.ICartRepository;
+/**
+ * this class performs operations on cart by implementing car service interface
+ * @author Sucharitha
+ *
+ */
+@Service
+public class CartServiceImpl {
+	@Autowired
+	private ICartRepository cartRepository;
+	
+	public Cart saveCart(Cart cart) {		
+		return cartRepository.save(cart);
+	}	
+		
+	public void deleteCart(int cartId) {
+		cartRepository.deleteById(cartId);
+	}
+			
+	public Cart updateCart(Cart cart) { 
+		return cartRepository.save(cart);
+	}
+
+	public Iterable<Cart> listAllCarts(){
+		return cartRepository.findAll(); 
+	}
+				
+	public Cart listCartById(int cartId){  
+		return cartRepository.findByCartId(cartId);
+	}
+
+
+}

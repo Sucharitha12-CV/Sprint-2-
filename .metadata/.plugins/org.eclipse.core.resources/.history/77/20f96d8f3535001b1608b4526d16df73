@@ -1,0 +1,37 @@
+package com.cg.ohds.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cg.ohds.entity.Customer;
+import com.cg.ohds.repository.ICustomerRepository;
+@Service
+public class CustomerServiceImpl implements ICustomerService{
+	@Autowired
+	private ICustomerRepository customerRepository;
+	
+	public Customer saveCustomer(Customer customer) {		
+		return customerRepository.save(customer);
+	}	
+		
+	public void deleteCustomer(int customerId) {
+
+		customerRepository.deleteById(customerId);
+	}
+			
+	public Customer updateCustomer(Customer customer) { 
+		return customerRepository.save(customer);
+
+	}
+
+	public Iterable<Customer> listAllCustomers(){
+		return customerRepository.findAll(); 
+	}
+				
+	public Customer listCustomerById(int customerId){  
+		Customer customer=customerRepository.findByCustomerId(customerId);
+		return customer;
+	}
+
+
+}

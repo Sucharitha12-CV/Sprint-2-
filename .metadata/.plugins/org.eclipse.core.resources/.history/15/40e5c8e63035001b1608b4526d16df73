@@ -1,0 +1,11 @@
+package com.cg.ohds.repository;
+import org.springframework.data.repository.CrudRepository;
+import com.cg.ohds.entity.Customer;
+/**
+ * this interface defines operations performed on customer and extends JPA repository
+ * @author Sucharitha
+ *
+ */
+public interface ICustomerRepository extends CrudRepository<Customer,Integer>{
+
+}

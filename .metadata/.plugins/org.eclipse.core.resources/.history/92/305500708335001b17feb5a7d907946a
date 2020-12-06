@@ -1,0 +1,75 @@
+package com.cg.ohds.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.cg.ohds.entity.Address;
+import com.cg.ohds.entity.Customer;
+import com.cg.ohds.entity.Product;
+import com.cg.ohds.repository.ICartRepository;
+import com.cg.ohds.repository.ICustomerRepository;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class TestCartServiceImpl {
+	@MockBean
+	private ICartRepository cartRepository;
+	@Autowired
+	private ICartService cartService;
+	@Test
+	public void testGetCustomerById(){
+		Address address=new Address("1rt6","produttur","kadapa","India",12345);
+		Customer customer=new Customer(1,"radha","radha1","dght5464","radha@gmail.com","123456789",address);
+		Product product=new Product(1,"Mats",900.0,12);
+		Product product1=new Product(2,"Matress",955.0,11);
+		List<Product> productList=new ArrayList<>();
+		productList.add(product);
+		productList.add(product1);
+	    Mockito.when(cartRepository.findByCartId(1)).thenReturn(customer);
+	    assertThat(cartService.listCartById(1)).isEqualTo(customer);
+	}
+	@Test
+	public void testUpdateCustomer(){
+		Address address=new Address("1rt6","produttur","kadapa","India",12345);
+		Customer customer=new Customer(2,"radha","radha1","dght5464","radha@gmail.com","123456789",address);
+		Mockito.when(cartRepository.save(customer)).thenReturn(customer);
+		assertThat(cartService.updateCart(customer)).isEqualTo(customer);		
+	}
+	@Test
+	public void testListAllCustomers() {
+		Address address=new Address("1rt6","produttur","kadapa","India",12345);
+		Customer customer=new Customer(1,"radha","radha1","dght5464","radha@gmail.com","123456789",address);
+		Address address1=new Address("1rt6","produttur","kadapa","India",12345);
+		Customer customer1=new Customer(2,"radha rani","radha1","dght5464","radha@gmail.com","123456789",address);
+	    List<Customer> customerList = new ArrayList<>();
+        customerList.add(customer);
+        customerList.add(customer1);
+        Mockito.when(cartRepository.findAll()).thenReturn(customerList);
+        assertThat(cartService.listAllCarts()).isEqualTo(customerList);
+	}
+	@Test
+	public void testSaveCustomer() {
+		Address address=new Address("1rt6","produttur","kadapa","India",12345);
+		Customer customer=new Customer(2,"radha","radha1","dght5464","radha@gmail.com","123456789",address);
+		Mockito.when(cartRepository.save(customer)).thenReturn(customer);
+		assertThat(cartService.saveCart(customer)).isEqualTo(customer);		
+	}
+	@Test
+	public void testDeleteCustomer() {
+		Address address=new Address("1rt6","produttur","kadapa","India",12345);
+		Customer customer=new Customer(2,"radha","radha1","dght5464","radha@gmail.com","123456789",address);
+	    Assert.assertTrue(cartRepository.findById(2).isEmpty());
+	}
+
+}

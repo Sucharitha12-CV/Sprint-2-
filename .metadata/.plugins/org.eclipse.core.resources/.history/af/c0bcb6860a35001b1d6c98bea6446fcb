@@ -1,0 +1,58 @@
+package com.cg.ohds.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.NotBlank;
+
+@Embeddable
+public class Address {
+	@Column(name="address_line")
+    @NotBlank(message="address line should be given")
+	private String addressLine;
+	@Column(name="city")
+	@NotBlank(message="city should be given")
+	private String city;
+	@Column(name="state")
+	@NotBlank(message="state should be given")
+	private String state;
+	@Column(name="pincode")
+	@NotBlank(message="pincode should be given")
+	private int pinCode;
+	public Address(String addressLine, String city, String state, int pinCode) {
+		super();
+		this.addressLine = addressLine;
+		this.city = city;
+		this.state = state;
+		this.pinCode = pinCode;
+	}
+	public Address() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public String getAddressLine() {
+		return addressLine;
+	}
+	public void setAddressLine(String addressLine) {
+		this.addressLine = addressLine;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public int getPinCode() {
+		return pinCode;
+	}
+	public void setPinCode(int pinCode) {
+		this.pinCode = pinCode;
+	}
+	
+
+}

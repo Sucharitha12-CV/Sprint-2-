@@ -1,0 +1,137 @@
+package com.cg.ohds.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+/**
+ * this class defines the details of the customer 
+ * @author Sucharitha
+ * @param customerId-defines id of customer
+ * @param customerName-defines name of customer
+ * @param customerUserName-defines userName of customer
+ * @param customerPassword-defines password of customer
+ * @param customerEmail-defines email of customer
+ * @param customerPhoneNo-defines phoneNo of customer
+ * @param customerAddress-defines address of customer
+ */
+
+@Entity(name="customer")
+public class Customer {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="customer_id")
+	private int customerId;
+	@Column(name="customer_name")
+	private String customerName;
+	@Column(name="customer_user_name")
+	private String customerUserName;
+	@Column(name="cutomer_password")
+	private String customerPassword;
+	@Column(name="customer_email")
+	private String customerEmail;
+	@Column(name="customer_phone_No")
+	private long customerPhoneNo;
+	@Column(name="customer_address")
+	private Address customerAddress;
+	/**
+	 * this method gives id of customer
+	 * @return customerId
+	 */
+	public int getCustomerId() {
+		return customerId;
+	}
+	/**
+	 * this method sets id of customer
+	 * @param customerId
+	 */
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+	/**
+	 * this method gives name of customer
+	 * @return customerName
+	 */
+	public String getCustomerName() {
+		return customerName;
+	}
+	/**
+	 * this method sets name of a customer
+	 * @param customerName
+	 */
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	/**
+	 * this method gives username of customer
+	 * @return customerUserName
+	 */
+	public String getCustomerUserName() {
+		return customerUserName;
+	}
+	/**
+	 * this method sets name of a customer
+	 * @param customerName-defines name of customer
+	 */
+	public void setCustomerUserName(String customerUserName) {
+		this.customerUserName = customerUserName;
+	}
+	/**
+	 * this method gives name of customer
+	 * @return customerName
+	 */
+	public String getCustomerPassword() {
+		return customerPassword;
+	}
+	/**
+	 * this method sets name of a customer
+	 * @param customerName-defines name of customer
+	 */
+	public void setCustomerPassword(String customerPassword) {
+		this.customerPassword = customerPassword;
+	}
+	/**
+	 * this method gives name of customer
+	 * @return customerName
+	 */
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+	/**
+	 * this method sets name of a customer
+	 * @param customerName-defines name of customer
+	 */
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
+	}
+	/**
+	 * this method gives name of customer
+	 * @return customerName
+	 */
+	public long getCustomerPhoneNo() {
+		return customerPhoneNo;
+	}
+	/**
+	 * this method sets name of a customer
+	 * @param customerName-defines name of customer
+	 */
+	public void setCustomerPhoneNo(long customerPhoneNo) {
+		this.customerPhoneNo = customerPhoneNo;
+	}
+	/**
+	 * this method gives name of customer
+	 * @return customerName
+	 */
+	public Address getCustomerAddress() {
+		return customerAddress;
+	}
+	/**
+	 * this method sets name of a customer
+	 * @param customerName-defines name of customer
+	 */
+	public void setCustomerAddress(Address customerAddress) {
+		this.customerAddress = customerAddress;
+	}
+
+}

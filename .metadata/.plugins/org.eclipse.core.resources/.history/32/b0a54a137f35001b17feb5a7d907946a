@@ -1,0 +1,43 @@
+package com.cg.ohds.service;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.cg.ohds.entity.Address;
+import com.cg.ohds.entity.Customer;
+import com.cg.ohds.repository.ICustomerRepository;
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class TestCustomerServiceImpl {
+	@MockBean
+	private ICustomerRepository customerRepository;
+	@Autowired
+	private ICustomerService customerService;
+	@Test
+	public void testGetCustomerById(){
+		Address address=new Address("1rt6","produttur","kadapa","India",12345);
+		Customer customer=new Customer(1,"radha","radha1","dght5464","radha@gmail.com","123456789",address);
+	    Mockito.when(customerRepository.findByCustomerId(1)).thenReturn(customer);
+	    assertThat(customerService.listCustomerById(1)).isEqualTo(customer);
+	}
+	@Test
+	public void testUpdateCustomer(){
+		Address address=new Address("1rt6","produttur","kadapa","India",12345);
+		Customer customer=new Customer(2,"radha","radha1","dght5464","radha@gmail.com","123456789",address);
+		Mockito.when(customerRepository.save(customer)).thenReturn(customer);
+		assertThat(customerService.updateCustomer(customer)).isEqualTo(customer);		
+	}
+
+
+
+}

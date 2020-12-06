@@ -1,0 +1,12 @@
+package com.cg.ohds.service;
+
+import org.springframework.stereotype.Service;
+
+import com.cg.ohds.entity.Cart;
+
+@Service
+public interface ICartService {
+	public Cart saveCart(Cart cart);
+	public void deleteCart(int cartId);
+	public Cart updateCart(Cart cart);
+}

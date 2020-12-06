@@ -1,0 +1,56 @@
+package com.cg.ohds.web;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cg.ohds.entity.Cart;
+import com.cg.ohds.service.ICartService;
+import com.cg.ohds.service.MapValidationErrorService;
+
+@RestController
+public class CartController {
+	@Autowired
+	ICartService cartService;
+	@Autowired
+	MapValidationErrorService mapValidationErrorService;
+	@PostMapping("/cart")
+	public ResponseEntity<?> saveCart(@Valid @RequestBody Cart cart, BindingResult result) {
+		ResponseEntity<?> errorMap=mapValidationErrorService.mapValidationService(result);
+		if(errorMap!=null) {
+			return errorMap;
+		}
+		Cart newCart=cartService.saveCart(cart);
+		return new ResponseEntity<Cart>(newCart, HttpStatus.CREATED);
+		
+	}	
+	@DeleteMapping("/{cartId}")
+	public ResponseEntity<String> deleteCart(@PathVariable int cartId){		  
+	    cartService.deleteCart(cartId); 
+	    return new ResponseEntity<String>("Cart with Id : "+cartId+" Deleted!",HttpStatus.OK);
+	}
+	@PutMapping("/cart/{cartId}")
+	public ResponseEntity<String> update(@PathVariable int cartId,  @Valid @RequestBody Cart cart) {
+		cartService.updateCart(cart); 
+	    return new ResponseEntity<String>("Cart Updated!",HttpStatus.OK);
+	}
+	@GetMapping("/{cartId}")
+	public ResponseEntity<?> listCartById(@PathVariable int cartId){
+		return new ResponseEntity<Cart>(cartService.listCartById(cartId),HttpStatus.OK);
+	}
+	@GetMapping("/allcustomers")
+	public Iterable<Cart> listAllCarts(){
+		return cartService.listAllCarts();
+	}
+
+}
