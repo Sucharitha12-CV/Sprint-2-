@@ -9,14 +9,26 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static springfox.documentation.builders.PathSelectors.regex;
-
+/**
+ * this class enables swagger and gives api documentation
+ * @author DELL
+ *
+ */
 @Configuration
 @EnableSwagger2
 public class MySwaggerConfig {
+	/**
+	 * this method returns a docket by  enabling swagger api documentation on customer
+	 * @return Docket
+	 */
 	@Bean
 	public Docket customerApi() {
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(customerData()).select().paths(regex("/Customer.*")).build();
 	}
+	/**
+	 * this method is used to configure meta data of swagger
+	 * @return ApiInfo
+	 */
 	private ApiInfo customerData() {
 		return new ApiInfoBuilder().title("Online Home Decor Shopping").description("Operations on customer and cart").build();	
 	}

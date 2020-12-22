@@ -1,0 +1,4 @@
+export const GET_ERRORS = "GET_ERRORS";
+export const GET_CUSTOMERS="GET_CUSTOMERS";
+export const GET_CUSTOMER ="GET_CUSTOMER";
+export const DELETE_CUSTOMER="DELETE_CUSTOMER";

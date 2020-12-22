@@ -1,5 +1,0 @@
-package com.cg.ohds.service;
-@Service
-public class MapValidationErrorService {
-
-}

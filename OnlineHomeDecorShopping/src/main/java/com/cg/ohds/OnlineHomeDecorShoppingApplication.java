@@ -11,6 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OnlineHomeDecorShoppingApplication {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(OnlineHomeDecorShoppingApplication.class, args);
+    	SpringApplication.run(OnlineHomeDecorShoppingApplication.class, args);
 	}
 }

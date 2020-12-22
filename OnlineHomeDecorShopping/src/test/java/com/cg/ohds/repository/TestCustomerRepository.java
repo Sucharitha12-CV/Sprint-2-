@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cg.ohds.entity.Address;
 import com.cg.ohds.entity.Customer;
 /**
  * this class tests the Customer Repository Interface
@@ -27,8 +26,7 @@ public class TestCustomerRepository {
 	@Test
 	public void testFindByCustomerId() throws Exception{
 		
-		Address address=new Address("1rt6","produttur","kadapa","India",12345);
-		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782",address);
+		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782","yadadriGunta");
 		customerRepository.save(customer);
 		Assert.assertNotNull(customerRepository.findByCustomerId(1));
 	}

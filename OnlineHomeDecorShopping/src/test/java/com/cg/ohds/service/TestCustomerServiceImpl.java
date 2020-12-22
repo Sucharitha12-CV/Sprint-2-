@@ -17,7 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cg.ohds.entity.Address;
 import com.cg.ohds.entity.Customer;
 import com.cg.ohds.exception.CustomerNotFoundException;
 import com.cg.ohds.repository.ICustomerRepository;
@@ -39,8 +38,7 @@ public class TestCustomerServiceImpl {
 	 */
 	@Test
 	public void testGetCustomerById() throws CustomerNotFoundException{
-		Address address=new Address("1rt6","produttur","kadapa","India",12345);
-		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782",address);
+		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782","address");
 		Mockito.when(customerRepository.findByCustomerId(1)).thenReturn(customer);
 	    assertThat(customerService.listCustomerById(1)).isEqualTo(customer);
 	}
@@ -50,8 +48,7 @@ public class TestCustomerServiceImpl {
 	 */
 	@Test
 	public void testUpdateCustomer() throws CustomerNotFoundException{
-		Address address=new Address("1rt6","produttur","kadapa","India",12345);
-		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782",address);
+		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782","address");
 		Mockito.when(customerRepository.findByCustomerId(1)).thenReturn(customer);
 		Mockito.when(customerRepository.save(customer)).thenReturn(customer);
 		assertThat(customerService.updateCustomer(customer)).isEqualTo(customer);		
@@ -61,10 +58,8 @@ public class TestCustomerServiceImpl {
 	 */
 	@Test
 	public void testListAllCustomers() {
-		Address address=new Address("1rt6","produttur","kadapa","India",12345);
-		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782",address);
-		Address address1=new Address("1rt6","produttur","kadapa","India",12345);
-		Customer customer1=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782",address1);
+		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782","address");
+		Customer customer1=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782","address1");
 		List<Customer> customerList = new ArrayList<>();
         customerList.add(customer);
         customerList.add(customer1);
@@ -76,8 +71,7 @@ public class TestCustomerServiceImpl {
 	 */
 	@Test
 	public void testSaveCustomer() {
-		Address address=new Address("1rt6","produttur","kadapa","India",12345);
-		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782",address);
+		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782","address");
 		Mockito.when(customerRepository.save(customer)).thenReturn(customer);
 		assertThat(customerService.saveCustomer(customer)).isEqualTo(customer);		
 	}
@@ -87,8 +81,7 @@ public class TestCustomerServiceImpl {
 	 */
 	@Test
     public void testDeleteCustomer() throws CustomerNotFoundException {
-		Address address=new Address("1rt6","produttur","kadapa","India",12345);
-		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782",address);
+		Customer customer=new Customer(1,"radha","radha1","dg!D5464","radha@gmail.com","9877565782","address");
 		customerRepository.save(customer);
 		Mockito.when(customerRepository.findByCustomerId(2)).thenReturn(customer);
 		customerService.deleteCustomer(2);

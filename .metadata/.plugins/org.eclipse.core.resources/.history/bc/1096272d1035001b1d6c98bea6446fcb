@@ -1,6 +1,0 @@
-package com.cg.ohds.repository;
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.cg.ohds.entity.Customer;
-public interface ICustomerRepository extends JpaRepository<Customer,Integer>{
-
-}

@@ -1,13 +1,11 @@
 package com.cg.ohds.entity;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -50,10 +48,9 @@ public class Customer {
 	@ApiModelProperty(notes="phone number of customer")
 	@Pattern(regexp="[6-9]{1}[0-9]{9}")
 	private String customerPhoneNo;
-	@NotNull(message="address should be given")
+	@NotBlank(message="address should be given")
 	@ApiModelProperty(notes="address of customer")
-	@Embedded
-	private Address customerAddress;
+	private String customerAddress;
 	/**
 	 * no parameter customer constructor
 	 */
@@ -70,7 +67,7 @@ public class Customer {
 	 * @param customerPhoneNo-defines phone number of a customer
 	 * @param customerAddress-defines address of a customer
 	 */
-	public Customer(int customerId, String customerName, String customerUserName, String customerPassword, String customerEmail, String customerPhoneNo, Address customerAddress) {
+	public Customer(int customerId, String customerName, String customerUserName, String customerPassword, String customerEmail, String customerPhoneNo,String customerAddress) {
 		super();
 		this.customerId = customerId;
 		this.customerName = customerName;
@@ -168,14 +165,14 @@ public class Customer {
 	 * this method gives address of customer
 	 * @return customerAddress
 	 */
-	public Address getCustomerAddress() {
+	public String getCustomerAddress() {
 		return customerAddress;
 	}
 	/**
 	 * this method sets address of a customer
 	 * @param customerAddress
 	 */
-	public void setCustomerAddress(Address customerAddress) {
+	public void setCustomerAddress(String customerAddress) {
 		this.customerAddress = customerAddress;
 	}
 }

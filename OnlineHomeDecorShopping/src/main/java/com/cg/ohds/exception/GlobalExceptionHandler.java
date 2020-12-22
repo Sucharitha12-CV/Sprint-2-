@@ -14,17 +14,7 @@ import org.springframework.web.context.request.WebRequest;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
-	/**
-	 * this method gives the error details when a CartNotFoundException is thrown
-	 * @param ex- object of CartNotFoundException
-	 * @param request-object of WebRequest
-	 * @return error details and http status
-	 */
-	@ExceptionHandler(CartNotFoundException.class)
-	public ResponseEntity<?> resourceNotFoundException(CartNotFoundException ex, WebRequest request) {
-		ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
-		return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
-	}
+	
 	/**
 	 * this method gives the error details when a CustomerNotFoundException is thrown
 	 * @param ex- object of CustomerNotFoundException
